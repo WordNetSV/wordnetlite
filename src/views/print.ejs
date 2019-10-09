@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Print Facture</title>
+    
+ <script
+ src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+ integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+ crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+
+<body>
+    <form action="/edit/<%= task._id %>" method="post">
+        <input type="file" id="file" class="oculto-impresion" accept="image/*" onchange="mostrar()"/>
+    <br>
+    <img id="img"/>
+    
+<script>
+ <h1 class="btn btn-danger"><a href="../index.html" style="color: white" >Volver</a></h1 >
+</script>
+      <table class="tabla">
+        <tr>
+            <td class="es"><input type="text" id="nombre" placeholder="Nombre" class="nombre form-control" style="padding: 3%" value="<%= task.title %>"></td>
+            <td class="text"><input type="date" id="fa" placeholder="Fecha" class="fecha form-control" style="padding: 3%"></td>
+            
+        </tr>
+
+        <tr>
+            <td class="d"><textarea  id="dir" placeholder="Direccion" class="direccion-2 form-control" cols="1" rows="2"  >Direccion:</textarea></td>
+        <td class="m"><input type="text" id="municipio" placeholder="Municipio" class="municipio form-control" style="padding: 3%" value="<%= task.c2 %>"></td>
+        <td class="de"><input type="text" id="departamento" placeholder="Departamento" class="dir form-control" style="padding: 3%" value="<%= task.c3 %>"></td>
+
+        </tr>
+
+</table>
+
+<table>
+    <td class="registro"><input type="text" id="registro" placeholder="Registro De IVA" class="resgistr form-control" style="padding: 3%" value="<%= task.c4 %>"></td>
+<td class="nt"><input type="text" id="nit" placeholder="NIT" class="ni form-control" style="padding: 3%"></td>
+</table>
+
+<table>
+    <td class="g"><input type="text" id="gi" placeholder="GIRO" class="gr form-control" style="padding: 3%" value="<%= task.c5 %>"></td> 
+</table>
+
+
+<table>
+    <td class="cd"><input type="text" id="cp" placeholder="Condiciones De Pago" class="cm form-control" style="padding: 3%" value="<%= task.c6 %>"></td>
+    <td class="vd"><input type="text" id="vc" placeholder="Venta A Cuenta De" class="vde form-control" style="padding: 3%" value="Venta A Cuenta De:"></td>  
+</table>
+
+<img src="images/n1.png" alt="">
+<table>
+  <thead>
+      <tr>
+            <th>Cantidad</th>
+          <th>producto</th>
+          <th>Precio por unidad</th>
+          <th style="text-align: center;">Ventas Exentas</th>
+          <th>Precio por producto</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          
+          <td>
+              <input type="text" class="monto input form-control" name="unitario" value="<%= task.p1 %>" style="padding: 5%" id="des2">
+          </td>
+          <td>
+                <input type="text" name="des"  style="padding: 5%" id="des" class="form-control" value="<%= task.p4 %>" >
+                </td>
+          <td>
+              <input type="text" class="monto input form-control" name="cantidad"  style="padding: 5%" id="des3">
+          </td>
+
+          <td>
+              <input type="text" style="padding: 5%; background: white;" class="form-control" disabled>
+          </td>
+          <td>
+               <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" class="monto total form-control"  disabled style="padding: 5%" id="des7">
+                </div>
+             
+              <input type="hidden" class="not-visible form-control" value="0" disabled style="padding: 5%; background: white" id="total">
+          </td>
+      </tr>
+      <tr>
+         
+          <td>
+              <input type="text" class="monto input form-control"  name="unitario2" value="<%= task.p2 %>"  style="padding: 5%" id="des5">
+          </td>
+          <td>
+                <input type="text" name="des2" value="<%= task.p5 %>"style="padding: 5%" id="des4" class="form-control"> 
+             </td>
+          <td>
+              <input type="number" class="monto input form-control" name="cantidad2" value=""style="padding: 5%" id="des6">
+          </td>
+
+          <td>
+            <input type="text" style="padding: 5%; background: white;" class="form-control" disabled>
+            </td>
+          <td>
+              <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" class="monto total form-control" value="0" disabled style="padding: 5%" id="des7">
+                </div>
+             
+          </td>
+      </tr>
+      <tr>
+          
+        
+          <td>
+              <input type="number" class="monto input form-control" name="unitario2" value="<%= task.p3 %>" style="padding: 5%" id="des9">
+          </td>
+          <td>
+                <input type="text" name="descr3" value="<%= task.p6 %>" style="padding: 5%" id="des8" class="form-control">
+               </td>
+          
+          <td>
+            
+              <input type="number" class="monto input form-control" name="cantidad3" value="" style="padding: 5%" id="des10">
+          </td>
+
+          <td>
+            <input type="text" style="padding: 5%; background: white;" class="form-control" disabled>
+            </td>
+          <td>
+              <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" class="monto total form-control" value="0" disabled style="padding: 5%" id="des11">
+                </div>
+            
+          </td>
+          
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <h5 id="mostrarAca"></h5> 
+            <input type="text" style="width: 60%" value="00/100" class="form-control"> 
+          </td>
+          <td>  
+       
+            <div>
+              Sumas
+              <input type="text"id="precio_no_tax"  class="monto totales form-control" name="afectas" value="" disabled   onChange="multiplicar();"  onblur="document.getElementById('uno').value=this.value" style= "text-align: right" >
+            </div>
+             <div>
+               Subtotal
+              <input class="form-control" type="text" id="multiplicando" onblur="document.getElementById('uno').value=this.value"style="text-align: right" />
+             </div>
+  
+             <div>
+              Total<input type="text" id="uno" placeholder=""  class="form-control" style="text-align: right">  
+             </div>         
+           
+        
+<input type="text" onkeyup="mostrarNumero(this)" name="son2" class="oculto-impresion" value="" />
+<h5 id="mostrarAca" translate="yes"></h5>
+</script>
+</table>
+<img src="../img/firmas3.png" alt="" >
+
+        <button class="btn btn-primary oculto-impresion"id="boton" onclick="guardar()" >
+          Guardar Factura
+        </button>
+        
+        <button onclick="javascript:imprimir()" class="oculto-impresion btn btn-success"">Imprimir</button>
+
+    </div>
+    </form>
+  
+
+
+
+
+        <style>
+              .nombre {
+            width: 600px;
+            
+        }
+
+        .es {
+            padding: 2%;
+        }
+
+        .d{
+            padding: 2%;
+        
+        }
+
+        .direccion-2 {
+            width: 600px;
+        }
+
+        #b {
+            width: 250px;
+        }
+
+        .municipio {
+            width: 250px;
+        }
+
+        .registro {
+            padding: 2%;
+
+        }
+
+        .resgistr {
+            width: 600px;
+        }
+
+        .nt {
+            padding-right: 1px;
+        }
+
+        .ni {
+            width: 400px;
+        }
+
+        .g {
+            padding: 2%;    
+        }
+
+        .gr {
+            width: 1000px;
+        }
+
+        .cd {
+            padding: 2%;
+        }
+
+        .cm {
+            width: 500px;
+        }
+
+        .vde {
+            width: 500px;
+        }
+
+        .ctn {
+            padding: 3%;
+        }
+
+        .cat {
+            width: 90px;
+            text-align: center;
+        }
+
+        .tx {
+            width: 700px;
+            text-align: center;
+        }
+
+        .can {
+            padding: 2%;
+            text-align: center;
+        }
+
+
+        .cnac {
+            width: 90px;
+        }
+
+        .pod {
+            width: 680px;
+            text-align: center;
+        }                                                                                                       
+
+        .son {
+            padding: 3%;
+        }
+
+        .cso {
+            width: 600px;
+        }
+
+        .pr {
+            padding-left: 100%;                                                                                                                                                 
+        }
+
+        .btn_suma {
+            font-family: Arial;
+        }
+
+        .mul {
+            padding: 2%
+        }
+
+        </style>
+       
+       <!--SCRIPT IGNORATE-->
+       <script>
+       function mostrar(){
+    var archivo = document.getElementById("file").files[0];
+    var reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(archivo );
+      reader.onloadend = function () {
+        document.getElementById("img").src = reader.result;
+      }
+    }
+  }
+
+  //2
+ // generamos un evento click y keyup para cada elemento input con la clase .input
+ var input=document.querySelectorAll(".input");
+ input.forEach(function(e) {
+ e.addEventListener("click",multiplica);
+ e.addEventListener("keyup",multiplica);
+ });
+
+ // funcion que genera la multiplicacion
+ function multiplica() {
+
+ // nos posicionamos en el tr del producto
+ var tr=this.closest("tr");
+
+ var total=1;
+
+ // recorremos todos los elementos del tr que tienen la clase .input
+ var inputs=tr.querySelectorAll(".input");
+ inputs.forEach(function(e) {
+ total*=e.value;
+ });
+
+ // mostramos el total con dos decimales
+ tr.querySelector(".total").value=total.toFixed(2);
+
+ // indicamos que calcule el total
+ calcularTotal(this.closest("table"));
+ }
+
+ // funcion que calcula la suma total de los productos
+ function calcularTotal(e) {
+ var total=0;
+
+ // obtenemos todos los totales y los sumamos
+ var totales=e.querySelectorAll(".total");
+ totales.forEach(function(e) {
+ total+=parseFloat(e.value);
+ });
+
+ // mostramos la suma total con dos decimales
+ e.getElementsByClassName("totales")[0].value=total.toFixed(2);
+ }
+
+ 
+//3
+function Suma() 
+{
+var valorA = parseInt(prompt('Dame el valor A:'));
+var valorB = parseInt(prompt('Dame valor B:'));
+
+var resultado=valorA + valorB; 
+document.getElementById('resultado').value = (valorA+"  +  " + valorB + " = " + resultado);
+
+}
+
+//4
+//4
+   // Convert numbers to words
+    // copyright 25th July 2006, by Stephen Chapman http://javascript.about.com
+    // permission to use this Javascript on your web page is granted
+    // provided that all of the code (including this copyright notice) is
+    // used exactly as shown (you can change the numbering system if you wish)
+
+    // American Numbering System
+    var th = ['','cien','millon', 'billion','trillon'];
+    // uncomment this line for English Number System
+    // var th = ['','thousand','million', 'milliard','billion'];
+
+    var dg = ['cero','uno','dos','tres','cuatro', 'cinco','seis','siete','ocho','nueve']; 
+    var tn = ['diez','once','doce','trece', 'catorce','quince','sixteen', 'diesiete','diciocho','dicenueve']; 
+    var tw = ['veinte','treinta','cuarenta','cincuenta', 'sesenta','setenta','ochenta','noventa']; 
+    function toWords(s){s = s.toString(); s = s.replace(/[\, ]/g,''); if (s != parseFloat(s)) return 'not a number'; var x = s.indexOf('.'); if (x == -1) x = s.length; if (x > 15) return 'too big'; var n = s.split(''); var str = ''; var sk = 0; for (var i=0; i < x; i++) {if ((x-i)%3==2) {if (n[i] == '1') {str += tn[Number(n[i+1])] + ' '; i++; sk=1;} else if (n[i]!=0) {str += tw[n[i]-2] + ' ';sk=1;}} else if (n[i]!=0) {str += dg[n[i]] +' '; if ((x-i)%3==0) str += 'cien ';sk=1;} if ((x-i)%3==1) {if (sk) str += th[(x-i-1)/3] + ' ';sk=0;}} if (x != s.length) {var y = s.length; str += 'point '; for (var i=x+1; i<y; i++) str += dg[n[i]] +' ';} return str.replace(/\s+/g,' ');}
+//6
+ 
+function imprimir(){
+    window.print();
+}
+
+       </script>
+</body>
+</html>

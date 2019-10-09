@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Of Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+  </head>
+<body>
+      <!-- LIST -->
+      <div class="col-md-10">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Nombre</th>
+                  <th>Direccion</th>
+                  <th>Municipio</th>
+                  <th>Departamento</th>
+                  <th>IVA</th>
+                  <th>GIRO</th>
+                  <th>Condiciones</th>
+                  <th>Productos</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i < tasks.length; i++) { %>
+                  <tr>
+                    <td><%= i + 1%></td>
+                    <td><strong><%= tasks[i].title %></strong></td>
+                    <td><%= tasks[i].c1 %></td>
+                    <td><%= tasks[i].c2 %></td>
+                    <td><%= tasks[i].c3 %></td>
+                    <td><%= tasks[i].c4 %></td>
+                    <td><%= tasks[i].c5 %></td>
+                    <td><%= tasks[i].c6 %></td>
+                    <td><%= tasks[i].cp %></td>
+                    <td>
+                      <!-- <a
+                        class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                        href="/turn/<%= tasks[i]._id %>">Done</a> -->
+                      <a href="/delete/<%= tasks[i]._id %>"
+                        class="btn btn-danger">
+                        Delete
+                      </a>
+                      <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                        Edit
+                      </a>
+                      <a href="/print1/<%= tasks[i]._id %>" class="btn btn-success">
+                        Print
+                      </a>
+                      <a href="/products-1/<%= tasks[i]._id %>" class="btn btn-warning">
+                        Add Products
+                      </a>
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+</body>
+</html>

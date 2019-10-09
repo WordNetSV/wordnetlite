@@ -1,0 +1,33 @@
+<% include partials/_header %>
+
+
+<title>Edit Dates</title>
+<div class="container">
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <form action="/edit/<%= task._id %>" method="post">
+            <div class="form-group">
+                <input class="form-control" type="text" name="title" placeholder="Title" value="<%= task.title %>">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="c3" placeholder="Title" value="<%= task.c3 %>">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="c2" cols="80"
+                  placeholder="Add a Description"
+                  ><%= task.c2 %></textarea>
+              </div>
+            <button class="btn btn-primary" type="submit">
+              Update 
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer%>
